@@ -7,19 +7,20 @@ on:
 
 jobs:
   check-links-on-site:
-    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#running-a-workflow-based-on-the-conclusion-of-another-workflow
+    # Executar este job apenas se o workflow de deploy foi concluído com sucesso
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2.2"
-          bundler-cache: true
-      - name: Update _config.yml ⚙️
+          bundler-cache: true # Instala e armazena as dependências do Ruby em cache
+
+      - name: Update _config.yml for local build ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
           commitChange: false
@@ -29,20 +30,27 @@ jobs:
               "giscus.repo": "${{ github.repository }}",
               "baseurl": ""
             }
-      - name: Install and Build 🔧
+
+      - name: Install dependencies and Build site 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick
           pip3 install --upgrade jupyter
           export JEKYLL_ENV=production
           bundle exec jekyll build
+
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
+
+      # --- ESTA É A FORMA CORRETA ---
+      # Usa a Action oficial para verificar os links, sem comandos manuais
       - name: Link Checker 🔗
         uses: lycheeverse/lychee-action@v1.9.0
         with:
+          # Falhar o workflow se encontrar um link quebrado
           fail: true
-          # only check local links
-          args: --offline --remap '_site(/?.*)/assets/(.*) _site/assets/$2' --verbose --no-progress '_site/**/*.html'
-    
+          # Argumentos para o Lychee:
+          # --offline: Verifica apenas links para arquivos locais
+          # '_site/**/*.html': O caminho para os arquivos HTML que serão verificados
+          args: --offline '_site/**/*.html'
