@@ -231,7 +231,7 @@ GEM
       stringio
       time
       uri
-    ostruct (0.6.1)
+    ostruct (0.6.3)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (6.0.2)
@@ -278,7 +278,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.6.0)
     uri (1.0.3)
-    wdm (0.2.0)
     webrick (1.9.1)
 
 PLATFORMS
@@ -321,7 +320,6 @@ DEPENDENCIES
   jemoji
   observer
   ostruct
-  wdm (>= 0.1.0)
 
 BUNDLED WITH
    2.6.9
