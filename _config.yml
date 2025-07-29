@@ -2,12 +2,12 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Souza's Repo # the website title (if blank, full name will be used instead)
+title: Bobo Repo # the website title (if blank, full name will be used instead)
 first_name: Marcos
 middle_name:
 last_name: Souza
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  Me manda um e-mail!
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -86,8 +86,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: o odor das coisas # blog_name will be displayed in your blog page
-blog_description: mais um título engraçadinho
+blog_name: O Odor das Coisas # blog_name will be displayed in your blog page
+blog_description: Sobre o movimento e suas deformações
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -115,7 +115,7 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+disqus_shortname: msjes # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
